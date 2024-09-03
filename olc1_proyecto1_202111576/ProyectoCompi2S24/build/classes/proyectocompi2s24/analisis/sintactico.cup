@@ -1,0 +1,101 @@
+package proyectocompi2s24.analisis;
+
+//importaciones
+import java.util.*;
+import java_cup.runtime.Symbol;
+import java.util.LinkedList;
+import proyectocompi2s24.errores.Errores;
+import proyectocompi2s24.contracts.IOperation;
+import proyectocompi2s24.contracts.IStatement;
+import proyectocompi2s24.operaciones.*;
+
+
+//parser code -> codigo que pueden acceder fuera de la clase
+parser code
+{:
+    public String codigoUsr = "";
+    public LinkedList<Errores> listaErrores = Errores.errorList;
+    public LinkedList<IStatement> AST = new LinkedList<>();
+
+    public void syntax_error(Symbol s){
+        listaErrores.add(new Errores(
+                "Sintactico Recuperable",
+                "No se esperaba el componente " + s.value,
+                s.left,
+                s.right));
+    }
+
+    public void unrecovered_syntax_error(Symbol s){
+        listaErrores.add(new Errores(
+            "Sintactico No Recuperable",
+            "No se esperaba el componente " + s.value,
+            s.left,
+            s.right));
+    }
+:}
+
+//codigo accion -> codigo de uso interno de cup
+action code
+{:
+    Operaciones o = new Operaciones();
+:}
+
+terminal String CADENA, NUMEROS, IDENTIFICADOR, VAR, LBRACE, RBRACE, COMA, UNION;
+terminal PUNTO, FINCADENA, TKCONSOLE, TKLOG;
+terminal CONJ, OPERA, SCOPE;
+terminal MULT, DIV, PAR1, PAR2, MAS, MENOS, UMENOS, DOSPUNTOS, FDER;
+
+nonterminal INICIO;
+nonterminal LinkedList<IStatement> INSTRUCCIONES;
+nonterminal IStatement INSTRUCCION;
+nonterminal SetDefine CONJUNTO_DEF;
+nonterminal Set<Integer> CONJUNTO_ELEM;
+nonterminal SetReference CONJUNTO;
+nonterminal IMPRIMIR;
+nonterminal IOperation EXPRESION;
+nonterminal SetOperation STATEMENT;
+nonterminal IStatement SCOPE_BLOCK;
+
+precedence left MAS, MENOS;
+precedence left MULT, DIV;
+precedence left UMENOS;
+
+start with INICIO;
+
+INICIO ::= INSTRUCCIONES:i {: RESULT = i; :}
+;
+
+INSTRUCCIONES ::= INSTRUCCIONES:i INSTRUCCION:j {: RESULT = i; RESULT.add(j); :}
+                | INSTRUCCION:i {: RESULT = new LinkedList<IStatement>(); RESULT.add(i); :}
+;
+
+INSTRUCCION ::= IMPRIMIR
+            | CONJUNTO_DEF:s {: RESULT = s; :}
+            | SCOPE_BLOCK:s {: RESULT = s; :}
+            | STATEMENT:s {: RESULT = s; :}
+            | error FINCADENA
+            | FINCADENA
+;
+
+SCOPE_BLOCK ::= SCOPE VAR:n LBRACE INSTRUCCIONES:i RBRACE {: RESULT = new ScopeStatement(n,i); :}
+;
+
+CONJUNTO_DEF ::= CONJ DOSPUNTOS VAR:n FDER CONJUNTO_ELEM:e {: RESULT = new SetDefine(n,e); :};
+
+CONJUNTO_ELEM ::= CONJUNTO_ELEM:e COMA NUMEROS:n {: RESULT = e; RESULT.add(Integer.valueOf(n)); :}
+                | NUMEROS:n {: RESULT = new HashSet<>(); RESULT.add(Integer.valueOf(n)); :}
+;
+
+CONJUNTO ::= VAR:n {: RESULT = new SetReference(n); :}
+;
+
+STATEMENT ::= OPERA FDER EXPRESION:e {:RESULT = new SetOperation(e);:}
+;
+
+IMPRIMIR ::= TKCONSOLE PUNTO TKLOG PAR1 CADENA:c PAR2 FINCADENA         {: codigoUsr+=c+"\n"; :}
+           | TKCONSOLE PUNTO TKLOG PAR1 EXPRESION:e PAR2 FINCADENA      {: codigoUsr+=e+"\n"; :}
+;
+
+EXPRESION ::= CONJUNTO:a                        {: RESULT=a; :}
+            | UNION LBRACE EXPRESION:e1 RBRACE LBRACE EXPRESION:e2 RBRACE {: RESULT = new Union(e1, e2);:}
+;
