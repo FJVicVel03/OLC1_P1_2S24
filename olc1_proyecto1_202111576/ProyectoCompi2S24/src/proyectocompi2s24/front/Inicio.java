@@ -147,58 +147,26 @@ public class Inicio extends javax.swing.JFrame {
         String texto = jTextArea1.getText().toLowerCase();
         scanner s = new scanner(new BufferedReader(new StringReader(texto)));
         parser p = new parser(s);
-        LinkedList<IStatement> AST = null;
+        LinkedList<IStatement> AST = p.AST;
         TSimbolos t = new TSimbolos();
         //Graphics2D
-
-
 
         try {
             var resultado = p.parse();
             AST = (LinkedList<IStatement>) resultado.value;
-            jTextArea2.setText("El resultado no es una cadena de texto.");
             System.out.println(p.AST);
 
             for (var i : p.listaErrores) {
                 jTextArea2.append(i.toString() + "\n");
             }
-            for (var i : p.AST) {
-                System.out.println(i.toString() + "\n");
+            for (IStatement i : AST) {
+                i.execute(t, jTextArea2);
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Algo salio mal: " + e.getMessage(),
                     "Error", JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
-        }
-
-        if (AST != null && p.listaErrores.isEmpty()) {
-            System.out.println("AST");
-            for (IStatement iStatement : AST) {
-                iStatement.execute(t);
-            }
-            System.out.println("\n\n");
-
-            System.out.println("Tabla de simbolos");
-            t.imprimirTablas();
-            System.out.println("\n\n");
-
-            StringBuilder str = new StringBuilder();
-            str.append("""
-                digraph G {
-                    rootNode [label="Inicio"];
-                    node [shape="rectangle"];
-                    splines=polyline;
-                    concentrate=true;
-                """);
-
-            for (IStatement iStatement : AST) {
-                str.append(iStatement.grafo());
-                str.append("rootNode -> S_").append(iStatement.getId()).append(";\n");
-            }
-            str.append("}");
-            System.out.println("Graphviz");
-            System.out.println(str);
         }
 
 

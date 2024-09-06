@@ -1,15 +1,19 @@
 package proyectocompi2s24.tsimbolos;
 
+import proyectocompi2s24.contracts.IOperation;
+
 import java.util.*;
 
 public class TSimbolos {
-    private Stack<Map<String, Set<Integer>>> scopes;
-    private List<Map<String, Set<Integer>>> allScopes;
+    private Stack<Map<String, Set<String>>> scopes;
+    private List<Map<String, Set<String>>> allScopes;
+    private Map<String, IOperation> operaciones;
 
     public TSimbolos()
     {
         this.scopes = new Stack<>();
         this.allScopes = new ArrayList<>();
+        this.operaciones = new HashMap<>();
         //Creamos el scope raiz
         this.pushScope();
     }
@@ -20,20 +24,20 @@ public class TSimbolos {
     public void popScope() {
         if(!this.scopes.isEmpty())
         {
-            Map<String, Set<Integer>> scopeActual = this.scopes.pop();
+            Map<String, Set<String>> scopeActual = this.scopes.pop();
             // Guarda una copia del scope en la lista de todos los scopes
             this.allScopes.add(new HashMap<>(scopeActual));
         }
     }
 
-    public void add(String id, Set<Integer> elementos)
+    public void add(String id, Set<String> elementos)
     {
         if(!this.scopes.isEmpty())
         {
            this.scopes.peek().put(id, elementos);
         }
     }
-    public Set<Integer> get(String id)
+    public Set<String> get(String id)
     {
         for(int i = this.scopes.size() - 1; i >= 0; i--)
         {
@@ -57,13 +61,25 @@ public class TSimbolos {
         return false;
     }
 
+    // Método para agregar una operación a la tabla
+    public void addOperation(String id, IOperation operacion) {
+        this.operaciones.put(id, operacion);
+    }
+
+    // Método para obtener una operación
+    public IOperation getOperation(String id) {
+        return this.operaciones.get(id);
+    }
+
+
+
     // Método para imprimir todas las tablas de símbolos creadas
     public void imprimirTablas()
     {
         for(int i = 0; i < this.allScopes.size(); i++)
         {
             System.out.println("Scope " + i);
-            for (Map.Entry<String, Set<Integer>> entry : this.allScopes.get(i).entrySet())
+            for (Map.Entry<String, Set<String>> entry : this.allScopes.get(i).entrySet())
             {
                 System.out.println("ID: " + entry.getKey() + " Elementos: " + entry.getValue());
             }

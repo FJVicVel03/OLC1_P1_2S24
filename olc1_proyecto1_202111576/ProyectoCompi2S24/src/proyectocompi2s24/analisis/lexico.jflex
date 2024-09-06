@@ -40,17 +40,19 @@ DIV = "/"
 MAS = "+"
 MENOS = "-"
 UNION = "u"
+INTERSECCION = "&"
 PAR1 = "("
 PAR2 = ")"
 PUNTO = "."
 COMA = ","
 DOSPUNTOS = ":"
 FDER = "->"
+VIRGULILLA = "~"
 LBRACE = "{"
 RBRACE = "}"
 VAR = [0-9A-Za-z_]+
 BLANCOS = [\ \r\t\f\n]+
-NUMEROS = [0-9]+("."[0-9]+)? // aceptamos enteros y decimales
+NUMEROS = [x21-x7E] // aceptamos enteros y decimales
 
 // palabras reservadas
 TKCONSOLE = "console"
@@ -58,6 +60,7 @@ TKLOG = "log"
 CONJ = "conj"
 OPERA = "opera"
 SCOPE = "scope"
+EVALUAR = "evaluar"
 
 %%
 
@@ -88,11 +91,26 @@ SCOPE = "scope"
     return new Symbol(sym.OPERA,yyline,yycolumn,yytext())
 ;}
 
+<YYINITIAL> {EVALUAR}
+{
+    TablaTokens token = new TablaTokens("EVALUAR", true, yyline, yycolumn, yytext());
+    tokenList.add(token);
+    return new Symbol(sym.EVALUAR,yyline,yycolumn,yytext())
+;}
+
 <YYINITIAL> {UNION}
 {
     TablaTokens token = new TablaTokens("UNION", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.UNION,yyline,yycolumn,yytext());
+
+}
+
+<YYINITIAL> {INTERSECCION}
+{
+    TablaTokens token = new TablaTokens("INTERSECCION", true, yyline, yycolumn, yytext());
+    tokenList.add(token);
+    return new Symbol(sym.INTERSECCION,yyline,yycolumn,yytext());
 
 }
 
@@ -117,6 +135,13 @@ SCOPE = "scope"
     return new Symbol(sym.FDER,yyline,yycolumn,yytext())
 ;}
 
+<YYINITIAL> {VIRGULILLA}
+{
+    TablaTokens token = new TablaTokens("VIRGULILLA", true, yyline, yycolumn, yytext());
+    tokenList.add(token);
+    return new Symbol(sym.VIRGULILLA,yyline,yycolumn,yytext())
+;}
+
 <YYINITIAL> {LBRACE}
 {
     TablaTokens token = new TablaTokens("LBRACE", true, yyline, yycolumn, yytext());
@@ -137,6 +162,7 @@ SCOPE = "scope"
     tokenList.add(token);
     return new Symbol(sym.NUMEROS,yyline,yycolumn,yytext());
 }
+
 
 <YYINITIAL> {VAR}
 {

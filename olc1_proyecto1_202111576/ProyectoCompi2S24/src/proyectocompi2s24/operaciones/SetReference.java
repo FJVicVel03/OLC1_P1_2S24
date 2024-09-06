@@ -13,7 +13,7 @@ public class SetReference extends IOperation {
     }
 
     @Override
-    public Set<Integer> eval(TSimbolos ts) {
+    public Set<String> eval(TSimbolos ts) {
         if(!ts.contiene(id))
         {
             System.out.println("Error: El conjunto " + this.id + " no ha sido definido");
@@ -21,6 +21,12 @@ public class SetReference extends IOperation {
         }
         return ts.get(id);
     }
+
+    @Override
+    public void evaluar(Set<Integer> elementos) {
+        // No hace nada
+    }
+
     @Override
     public String grafo(){
         StringBuilder str = new StringBuilder();

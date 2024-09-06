@@ -4,6 +4,7 @@ package proyectocompi2s24.analisis;
 import java.util.*;
 import java_cup.runtime.Symbol;
 import java.util.LinkedList;
+import proyectocompi2s24.tsimbolos.TSimbolos;
 import proyectocompi2s24.errores.Errores;
 import proyectocompi2s24.contracts.IOperation;
 import proyectocompi2s24.contracts.IStatement;
@@ -40,7 +41,7 @@ action code
     Operaciones o = new Operaciones();
 :}
 
-terminal String CADENA, NUMEROS, IDENTIFICADOR, VAR, LBRACE, RBRACE, COMA, UNION;
+terminal String CADENA, NUMEROS, IDENTIFICADOR, VAR, LBRACE, RBRACE, COMA, UNION, INTERSECCION, EVALUAR, VIRGULILLA;
 terminal PUNTO, FINCADENA, TKCONSOLE, TKLOG;
 terminal CONJ, OPERA, SCOPE;
 terminal MULT, DIV, PAR1, PAR2, MAS, MENOS, UMENOS, DOSPUNTOS, FDER;
@@ -49,7 +50,7 @@ nonterminal INICIO;
 nonterminal LinkedList<IStatement> INSTRUCCIONES;
 nonterminal IStatement INSTRUCCION;
 nonterminal SetDefine CONJUNTO_DEF;
-nonterminal Set<Integer> CONJUNTO_ELEM;
+nonterminal Set<String> CONJUNTO_ELEM;
 nonterminal SetReference CONJUNTO;
 nonterminal IMPRIMIR;
 nonterminal IOperation EXPRESION;
@@ -82,14 +83,21 @@ SCOPE_BLOCK ::= SCOPE VAR:n LBRACE INSTRUCCIONES:i RBRACE {: RESULT = new ScopeS
 
 CONJUNTO_DEF ::= CONJ DOSPUNTOS VAR:n FDER CONJUNTO_ELEM:e {: RESULT = new SetDefine(n,e); :};
 
-CONJUNTO_ELEM ::= CONJUNTO_ELEM:e COMA NUMEROS:n {: RESULT = e; RESULT.add(Integer.valueOf(n)); :}
-                | NUMEROS:n {: RESULT = new HashSet<>(); RESULT.add(Integer.valueOf(n)); :}
+CONJUNTO_ELEM ::= CONJUNTO_ELEM:e COMA NUMEROS:n {: RESULT = e; RESULT.add(n); :}
+                | NUMEROS:n {: RESULT = new HashSet<>(); RESULT.add(n); :}
+                | NUMEROS:n1 VIRGULILLA NUMEROS:n2 {: RESULT = new RangoOP(n1,n2).generarRango();:}
 ;
 
 CONJUNTO ::= VAR:n {: RESULT = new SetReference(n); :}
 ;
 
-STATEMENT ::= OPERA FDER EXPRESION:e {:RESULT = new SetOperation(e);:}
+STATEMENT ::= OPERA DOSPUNTOS VAR:n FDER EXPRESION:e {:
+                TSimbolos ts = new TSimbolos();
+                ts.addOperation(n, e);
+                RESULT = new SetOperation(n, e);
+:}
+                            | EXPRESION:e {: RESULT = new SetOperation(e); :}
+                            | PAR1 EXPRESION:e PAR2 {: RESULT = new SetOperation(e); :}
 ;
 
 IMPRIMIR ::= TKCONSOLE PUNTO TKLOG PAR1 CADENA:c PAR2 FINCADENA         {: codigoUsr+=c+"\n"; :}
@@ -98,4 +106,5 @@ IMPRIMIR ::= TKCONSOLE PUNTO TKLOG PAR1 CADENA:c PAR2 FINCADENA         {: codig
 
 EXPRESION ::= CONJUNTO:a                        {: RESULT=a; :}
             | UNION LBRACE EXPRESION:e1 RBRACE LBRACE EXPRESION:e2 RBRACE {: RESULT = new Union(e1, e2);:}
+            | INTERSECCION LBRACE EXPRESION:e1 RBRACE LBRACE EXPRESION:e2 RBRACE {: RESULT = new Interseccion(e1, e2);:}
 ;

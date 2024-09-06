@@ -14,10 +14,15 @@ public class Union extends IOperation {
         this.op2 = op2;
     }
     @Override
-    public Set<Integer> eval(TSimbolos ts) {
-        Set<Integer> resultado1 = new HashSet<>(op1.eval(ts));
+    public Set<String> eval(TSimbolos ts) {
+        HashSet<String> resultado1 = new HashSet<>(op1.eval(ts));
         resultado1.addAll(op2.eval(ts));
         return resultado1;
+    }
+
+    @Override
+    public void evaluar(Set<Integer> elementos) {
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package proyectocompi2s24.operaciones;
 import proyectocompi2s24.contracts.IStatement;
 import proyectocompi2s24.tsimbolos.TSimbolos;
 
+import javax.swing.*;
 import java.util.LinkedList;
 
 public class ScopeStatement extends IStatement {
@@ -15,16 +16,14 @@ public class ScopeStatement extends IStatement {
     }
 
     @Override
-    public void execute(TSimbolos ts) {
+    public void execute(TSimbolos ts, JTextArea consola) {
         ts.pushScope();
-        System.out.println("Scope: " + this.name);
         for (IStatement statement : this.statements) {
-            statement.execute(ts);
+            statement.execute(ts, consola);
         }
 
         //Cerramos el scope
         ts.popScope();
-        System.out.println("Fin Scope: " + this.name);
 
 
     }
@@ -39,4 +38,18 @@ public class ScopeStatement extends IStatement {
         }
         return str.toString();
     }
+    @Override
+    public String toString() {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Scope: ").append(this.name).append("\n");
+
+        for (IStatement statement : statements) {
+            resultado.append(statement.toString()).append("\n");  // Llamada recursiva a toString() en cada statement
+        }
+
+        resultado.append("Fin Scope: ").append(this.name).append("\n");
+        return resultado.toString();
+    }
+
+
 }
