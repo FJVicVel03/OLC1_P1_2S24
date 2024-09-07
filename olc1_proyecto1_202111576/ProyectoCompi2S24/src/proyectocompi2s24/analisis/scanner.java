@@ -43,9 +43,9 @@ public class scanner implements java_cup.runtime.Scanner {
      1,  5,  6,  7,  0,  0,  8,  0,  9, 10, 11, 12, 13, 14, 15, 16, 
     17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 20, 21, 20, 22, 20, 
     20, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 
-    18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 20, 20, 20, 20, 18, 
-    20, 23, 18, 24, 18, 25, 18, 26, 18, 18, 27, 18, 28, 18, 29, 30, 
-    31, 18, 32, 33, 18, 34, 35, 18, 18, 17, 17, 36,  0, 37, 38,  0, 
+    18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 20, 20, 20, 23, 18, 
+    20, 24, 18, 25, 18, 26, 18, 27, 18, 18, 28, 18, 29, 18, 30, 31, 
+    32, 18, 33, 34, 18, 35, 36, 18, 18, 17, 17, 37,  0, 38, 39,  0, 
      0,  0,  0,  0,  0,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
@@ -64,13 +64,13 @@ public class scanner implements java_cup.runtime.Scanner {
   private static final String ZZ_ACTION_PACKED_0 =
     "\2\0\1\1\1\2\1\3\1\1\1\4\1\5\1\6"+
     "\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
-    "\1\17\7\16\1\20\1\21\1\22\1\23\1\24\1\25"+
-    "\1\0\1\26\1\27\1\0\5\15\1\0\2\15\1\30"+
-    "\2\15\1\26\1\31\6\15\1\32\1\33\2\15\1\34"+
-    "\1\35";
+    "\1\17\2\16\1\20\5\16\1\21\1\22\1\23\1\24"+
+    "\1\25\1\26\1\0\1\27\1\30\1\0\5\15\1\0"+
+    "\2\15\1\31\2\15\1\27\1\32\6\15\1\33\1\34"+
+    "\2\15\1\35\1\36";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[60];
+    int [] result = new int[61];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -95,17 +95,17 @@ public class scanner implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\47\0\116\0\165\0\116\0\234\0\116\0\116"+
-    "\0\116\0\116\0\116\0\116\0\303\0\116\0\116\0\352"+
-    "\0\352\0\116\0\116\0\u0111\0\u0138\0\u015f\0\u0186\0\u01ad"+
-    "\0\u01d4\0\352\0\116\0\116\0\116\0\116\0\116\0\234"+
-    "\0\116\0\116\0\u01fb\0\u0222\0\u0249\0\u0270\0\u0297\0\u02be"+
-    "\0\u02e5\0\u030c\0\u0333\0\352\0\u035a\0\u0381\0\u01fb\0\352"+
-    "\0\u03a8\0\u03cf\0\u03f6\0\u041d\0\u0444\0\u046b\0\352\0\352"+
-    "\0\u0492\0\u04b9\0\352\0\352";
+    "\0\0\0\50\0\120\0\170\0\120\0\240\0\120\0\120"+
+    "\0\120\0\120\0\120\0\120\0\310\0\120\0\120\0\360"+
+    "\0\360\0\120\0\120\0\u0118\0\120\0\u0140\0\u0168\0\u0190"+
+    "\0\u01b8\0\u01e0\0\360\0\120\0\120\0\120\0\120\0\120"+
+    "\0\240\0\120\0\120\0\u0208\0\u0230\0\u0258\0\u0280\0\u02a8"+
+    "\0\u02d0\0\u02f8\0\u0320\0\u0348\0\360\0\u0370\0\u0398\0\u0208"+
+    "\0\360\0\u03c0\0\u03e8\0\u0410\0\u0438\0\u0460\0\u0488\0\360"+
+    "\0\360\0\u04b0\0\u04d8\0\360\0\360";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[60];
+    int [] result = new int[61];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -130,32 +130,32 @@ public class scanner implements java_cup.runtime.Scanner {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\3\2\4\1\0\1\4\1\3\1\5\1\6\1\7"+
     "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17"+
-    "\1\20\1\21\1\22\1\23\1\24\1\23\1\21\1\25"+
-    "\1\26\2\21\1\27\1\21\1\30\2\21\1\31\1\32"+
-    "\1\21\1\33\1\34\1\35\6\36\1\37\40\36\50\0"+
-    "\2\4\1\0\1\4\42\0\2\40\1\41\2\0\42\40"+
-    "\26\0\1\42\41\0\2\20\4\0\15\20\10\0\1\43"+
-    "\62\0\2\20\4\0\7\20\1\44\5\20\24\0\2\20"+
-    "\4\0\14\20\1\45\24\0\2\20\4\0\7\20\1\46"+
-    "\5\20\24\0\2\20\4\0\10\20\1\47\4\20\24\0"+
-    "\2\20\4\0\1\20\1\50\13\20\3\0\5\43\1\51"+
-    "\41\43\21\0\2\20\4\0\6\20\1\52\6\20\24\0"+
-    "\2\20\4\0\1\53\14\20\24\0\2\20\4\0\3\20"+
-    "\1\54\11\20\24\0\2\20\4\0\2\20\1\55\12\20"+
-    "\24\0\2\20\4\0\7\20\1\56\5\20\3\0\5\43"+
-    "\1\51\20\43\1\57\20\43\21\0\2\20\4\0\4\20"+
-    "\1\60\5\20\1\61\2\20\24\0\2\20\4\0\5\20"+
-    "\1\62\7\20\24\0\2\20\4\0\11\20\1\63\3\20"+
-    "\24\0\2\20\4\0\10\20\1\64\4\20\24\0\2\20"+
-    "\4\0\7\20\1\65\5\20\24\0\2\20\4\0\13\20"+
-    "\1\66\1\20\24\0\2\20\4\0\1\67\14\20\24\0"+
-    "\2\20\4\0\2\20\1\70\12\20\24\0\2\20\4\0"+
-    "\5\20\1\71\7\20\24\0\2\20\4\0\1\72\14\20"+
-    "\24\0\2\20\4\0\2\20\1\73\12\20\24\0\2\20"+
-    "\4\0\11\20\1\74\3\20\3\0";
+    "\1\20\1\21\1\22\1\23\1\24\1\23\1\25\1\21"+
+    "\1\26\1\27\2\21\1\30\1\21\1\31\2\21\1\32"+
+    "\1\33\1\21\1\34\1\35\1\36\6\37\1\40\41\37"+
+    "\51\0\2\4\1\0\1\4\43\0\2\41\1\42\2\0"+
+    "\43\41\26\0\1\43\42\0\2\20\5\0\15\20\10\0"+
+    "\1\44\63\0\2\20\5\0\7\20\1\45\5\20\24\0"+
+    "\2\20\5\0\14\20\1\46\24\0\2\20\5\0\7\20"+
+    "\1\47\5\20\24\0\2\20\5\0\10\20\1\50\4\20"+
+    "\24\0\2\20\5\0\1\20\1\51\13\20\3\0\5\44"+
+    "\1\52\42\44\21\0\2\20\5\0\6\20\1\53\6\20"+
+    "\24\0\2\20\5\0\1\54\14\20\24\0\2\20\5\0"+
+    "\3\20\1\55\11\20\24\0\2\20\5\0\2\20\1\56"+
+    "\12\20\24\0\2\20\5\0\7\20\1\57\5\20\3\0"+
+    "\5\44\1\52\20\44\1\60\21\44\21\0\2\20\5\0"+
+    "\4\20\1\61\5\20\1\62\2\20\24\0\2\20\5\0"+
+    "\5\20\1\63\7\20\24\0\2\20\5\0\11\20\1\64"+
+    "\3\20\24\0\2\20\5\0\10\20\1\65\4\20\24\0"+
+    "\2\20\5\0\7\20\1\66\5\20\24\0\2\20\5\0"+
+    "\13\20\1\67\1\20\24\0\2\20\5\0\1\70\14\20"+
+    "\24\0\2\20\5\0\2\20\1\71\12\20\24\0\2\20"+
+    "\5\0\5\20\1\72\7\20\24\0\2\20\5\0\1\73"+
+    "\14\20\24\0\2\20\5\0\2\20\1\74\12\20\24\0"+
+    "\2\20\5\0\11\20\1\75\3\20\3\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[1248];
+    int [] result = new int[1280];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -199,11 +199,11 @@ public class scanner implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\2\0\1\11\1\1\1\11\1\1\6\11\1\1\2\11"+
-    "\2\1\2\11\7\1\5\11\1\0\2\11\1\0\5\1"+
-    "\1\0\23\1";
+    "\2\1\2\11\1\1\1\11\6\1\5\11\1\0\2\11"+
+    "\1\0\5\1\1\0\23\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[60];
+    int [] result = new int[61];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -715,94 +715,94 @@ public class scanner implements java_cup.runtime.Scanner {
     listaErrores.add(error);
             }
           // fall through
-          case 30: break;
+          case 31: break;
           case 2:
             { 
             }
           // fall through
-          case 31: break;
+          case 32: break;
           case 3:
             { yybegin(CADENA);cadena ="";
             }
           // fall through
-          case 32: break;
+          case 33: break;
           case 4:
             { TablaTokens token = new TablaTokens("INTERSECCION", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.INTERSECCION,yyline,yycolumn,yytext());
             }
           // fall through
-          case 33: break;
+          case 34: break;
           case 5:
             { TablaTokens token = new TablaTokens("PARENTESIS_A", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.PAR1,yyline,yycolumn,yytext());
             }
           // fall through
-          case 34: break;
+          case 35: break;
           case 6:
             { TablaTokens token = new TablaTokens("PARENTESIS_C", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.PAR2,yyline,yycolumn,yytext());
             }
           // fall through
-          case 35: break;
+          case 36: break;
           case 7:
             { TablaTokens token = new TablaTokens("MULTIPLICACION", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.MULT,yyline,yycolumn,yytext());
             }
           // fall through
-          case 36: break;
+          case 37: break;
           case 8:
             { TablaTokens token = new TablaTokens("SUMA", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.MAS,yyline,yycolumn,yytext());
             }
           // fall through
-          case 37: break;
+          case 38: break;
           case 9:
             { TablaTokens token = new TablaTokens("COMA", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.COMA,yyline,yycolumn,yytext());
             }
           // fall through
-          case 38: break;
+          case 39: break;
           case 10:
             { TablaTokens token = new TablaTokens("RESTA", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.MENOS,yyline,yycolumn,yytext());
             }
           // fall through
-          case 39: break;
+          case 40: break;
           case 11:
             { TablaTokens token = new TablaTokens("PUNTO", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.PUNTO,yyline,yycolumn,yytext());
             }
           // fall through
-          case 40: break;
+          case 41: break;
           case 12:
             { TablaTokens token = new TablaTokens("DIVISION", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.DIV,yyline,yycolumn,yytext());
             }
           // fall through
-          case 41: break;
+          case 42: break;
           case 13:
             { TablaTokens token = new TablaTokens("IDENTIFICADOR", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.VAR,yyline,yycolumn,yytext());
             }
           // fall through
-          case 42: break;
+          case 43: break;
           case 14:
             { TablaTokens token = new TablaTokens("NUMERO", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.NUMEROS,yyline,yycolumn,yytext());
             }
           // fall through
-          case 43: break;
+          case 44: break;
           case 15:
             { TablaTokens token = new TablaTokens("DOSPUNTOS", true, yyline, yycolumn, yytext());
     tokenList.add(token);
@@ -810,110 +810,117 @@ public class scanner implements java_cup.runtime.Scanner {
 ;
             }
           // fall through
-          case 44: break;
+          case 45: break;
           case 16:
+            { TablaTokens token = new TablaTokens("COMPLEMENTO", true, yyline, yycolumn, yytext());
+    tokenList.add(token);
+    return new Symbol(sym.COMPLEMENTO,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 46: break;
+          case 17:
             { TablaTokens token = new TablaTokens("UNION", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.UNION,yyline,yycolumn,yytext());
             }
           // fall through
-          case 45: break;
-          case 17:
+          case 47: break;
+          case 18:
             { TablaTokens token = new TablaTokens("LBRACE", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.LBRACE,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 46: break;
-          case 18:
+          case 48: break;
+          case 19:
             { TablaTokens token = new TablaTokens("RBRACE", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.RBRACE,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 47: break;
-          case 19:
+          case 49: break;
+          case 20:
             { TablaTokens token = new TablaTokens("VIRGULILLA", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.VIRGULILLA,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 48: break;
-          case 20:
+          case 50: break;
+          case 21:
             { cadena+=yytext();
             }
           // fall through
-          case 49: break;
-          case 21:
+          case 51: break;
+          case 22:
             { String tmp = cadena; cadena =""; yybegin(YYINITIAL);
             return new Symbol(sym.CADENA, yyline, yycolumn, tmp);
             }
           // fall through
-          case 50: break;
-          case 22:
+          case 52: break;
+          case 23:
             { /* Ignore */
             }
           // fall through
-          case 51: break;
-          case 23:
+          case 53: break;
+          case 24:
             { TablaTokens token = new TablaTokens("FDER", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.FDER,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 52: break;
-          case 24:
+          case 54: break;
+          case 25:
             { TablaTokens token = new TablaTokens("LOG", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.TKLOG,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 53: break;
-          case 25:
+          case 55: break;
+          case 26:
             { TablaTokens token = new TablaTokens("CONJ", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.CONJ,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 54: break;
-          case 26:
+          case 56: break;
+          case 27:
             { TablaTokens token = new TablaTokens("OPERA", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.OPERA,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 55: break;
-          case 27:
+          case 57: break;
+          case 28:
             { TablaTokens token = new TablaTokens("SCOPE", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.SCOPE,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 56: break;
-          case 28:
+          case 58: break;
+          case 29:
             { TablaTokens token = new TablaTokens("CONSOLE", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.TKCONSOLE,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 57: break;
-          case 29:
+          case 59: break;
+          case 30:
             { TablaTokens token = new TablaTokens("EVALUAR", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.EVALUAR,yyline,yycolumn,yytext())
 ;
             }
           // fall through
-          case 58: break;
+          case 60: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

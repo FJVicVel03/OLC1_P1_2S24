@@ -28,25 +28,28 @@ public class ManejoGraficos extends JPanel {
         g2d.setStroke(new BasicStroke(2));
         Color colorConjuntoA = Color.RED;
         Color colorConjuntoB = Color.BLUE;
+        Color colorDiferencia = new Color(150, 150, 150, 150);  // Gris semitransparente para la diferencia A - B
         Color colorInterseccion = new Color(255, 0, 255, 150);  // Magenta semitransparente para intersección
 
         // Coordenadas para dibujar los conjuntos
         int xA = 100, yA = 100, width = 150, height = 150;
         int xB = 180, yB = 100;  // Conjunto B estará a la derecha de A
 
-        // Dibujar información de los conjuntos
-        g2d.setColor(Color.GREEN);
-        g2d.drawString("Conjunto A: " + conjuntoA.toString(), 80, 270);
-        g2d.drawString("Conjunto B: " + conjuntoB.toString(), 240, 270);
-        g2d.setColor(Color.MAGENTA);
-        g2d.drawString("Resultado: " + resultadoConjunto.toString(), 190, 300);
+        // Diferenciar entre Unión, Intersección, Complemento y Diferencia
+        if (tipoOperacion.equals("Diferencia")) {
+            // Dibujar conjunto A (círculo) con borde rojo
+            g2d.setColor(colorConjuntoA);
+            g2d.drawOval(xA, yA, width, height);  // Dibujar borde del conjunto A
 
-        // Encontrar la intersección entre los dos conjuntos
-        Set<String> interseccion = new HashSet<>(conjuntoA);
-        interseccion.retainAll(conjuntoB);  // Quedarse con los elementos comunes
+            // Dibujar conjunto B (círculo) con borde azul
+            g2d.setColor(colorConjuntoB);
+            g2d.drawOval(xB, yB, width, height);  // Dibujar borde del conjunto B
 
-        // Diferenciar entre Unión e Intersección
-        if (tipoOperacion.equals("Union")) {
+            // Resaltar solo la diferencia A - B (parte de A que no está en B)
+            g2d.setColor(colorDiferencia);
+            g2d.fillArc(xA, yA, width, height, 90, 180);  // Pintar solo el área de A que no está en B
+
+        } else if (tipoOperacion.equals("Union")) {
             // Dibujar conjunto A con transparencia
             g2d.setColor(new Color(255, 0, 0, 100));  // Rojo semitransparente
             g2d.fillOval(xA, yA, width, height);  // Pintar conjunto A
@@ -70,37 +73,53 @@ public class ManejoGraficos extends JPanel {
             // Colorear solo la intersección sin pintar el resto
             g2d.setColor(colorInterseccion);
             g2d.fillOval(175, 115, 75, 120);  // Pintar solo la intersección
+
+        } else if (tipoOperacion.equals("Complemento")) {
+            // Dibujar el universo (rectángulo grande)
+            g2d.setColor(Color.GRAY);
+            g2d.fillRect(50, 50, 400, 250);  // Pintar el fondo del universo
+
+            // Dibujar conjunto A (círculo) con borde rojo y sin relleno
+            g2d.setColor(colorConjuntoA);
+            g2d.drawOval(xA, yA, width, height);  // Dibujar el borde del conjunto A
+
+            // Dibujar el área fuera del conjunto A (complemento) con color blanco
+            g2d.setColor(Color.WHITE);
+            g2d.fillOval(xA, yA, width, height);  // Pintar el área dentro del conjunto A con blanco
         }
 
-        // Ajustar las posiciones para los elementos de conjuntoA que no están en la intersección
-        int offsetA = 0;
-        for (String elemento : conjuntoA) {
-            if (!interseccion.contains(elemento)) {
-                g2d.setColor(Color.BLACK);  // Los elementos se dibujan en negro
-                // Dibujar más a la izquierda para conjuntoA
-                g2d.drawString(elemento, 120, 140 + offsetA);
-                offsetA += 20;
+        // Dibujar los elementos dentro de los conjuntos, si no es Complemento
+        if (!tipoOperacion.equals("Complemento")) {
+            int offsetA = 0;
+            int stepA = height / (conjuntoA.size() + 1);  // Espaciado uniforme para los elementos de A
+            Set<String> interseccion = new HashSet<>(conjuntoA);
+            interseccion.retainAll(conjuntoB);  // Encontrar los elementos comunes para Intersección
+
+            for (String elemento : conjuntoA) {
+                if (!interseccion.contains(elemento)) {
+                    g2d.setColor(Color.BLACK);  // Los elementos se dibujan en negro
+                    g2d.drawString(elemento, 120, 140 + offsetA);  // Dibujar elementos de conjunto A
+                    offsetA += stepA;
+                }
             }
-        }
 
-        // Ajustar las posiciones para los elementos de conjuntoB que no están en la intersección
-        int offsetB = 0;
-        for (String elemento : conjuntoB) {
-            if (!interseccion.contains(elemento)) {
-                g2d.setColor(Color.BLACK);  // Los elementos se dibujan en negro
-                // Dibujar más a la derecha para conjuntoB
-                g2d.drawString(elemento, 300, 140 + offsetB);
-                offsetB += 20;
+            int offsetB = 0;
+            int stepB = height / (conjuntoB.size() + 1);  // Espaciado uniforme para los elementos de B
+            for (String elemento : conjuntoB) {
+                if (!interseccion.contains(elemento)) {
+                    g2d.setColor(Color.BLACK);  // Los elementos se dibujan en negro
+                    g2d.drawString(elemento, 300, 140 + offsetB);  // Dibujar elementos de conjunto B
+                    offsetB += stepB;
+                }
             }
-        }
 
-        // Dibujar los elementos en la intersección (centrado entre los dos conjuntos)
-        int offsetInterseccion = 0;
-        for (String elemento : interseccion) {
-            g2d.setColor(Color.BLACK);  // Los elementos de la intersección se dibujan en negro
-            // Colocar en la intersección (entre los dos conjuntos)
-            g2d.drawString(elemento, 200, 140 + offsetInterseccion);
-            offsetInterseccion += 20;
+            int offsetInterseccion = 0;
+            int stepInterseccion = height / (interseccion.size() + 1);  // Espaciado uniforme para la intersección
+            for (String elemento : interseccion) {
+                g2d.setColor(Color.BLACK);  // Los elementos de la intersección se dibujan en negro
+                g2d.drawString(elemento, 200, 140 + offsetInterseccion);  // Colocar en la intersección
+                offsetInterseccion += stepInterseccion;
+            }
         }
     }
 }

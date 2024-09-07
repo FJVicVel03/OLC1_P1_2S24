@@ -40,6 +40,7 @@ DIV = "/"
 MAS = "+"
 MENOS = "-"
 UNION = "u"
+COMPLEMENTO = "^"
 INTERSECCION = "&"
 PAR1 = "("
 PAR2 = ")"
@@ -111,6 +112,14 @@ EVALUAR = "evaluar"
     TablaTokens token = new TablaTokens("INTERSECCION", true, yyline, yycolumn, yytext());
     tokenList.add(token);
     return new Symbol(sym.INTERSECCION,yyline,yycolumn,yytext());
+
+}
+
+<YYINITIAL> {COMPLEMENTO}
+{
+    TablaTokens token = new TablaTokens("COMPLEMENTO", true, yyline, yycolumn, yytext());
+    tokenList.add(token);
+    return new Symbol(sym.COMPLEMENTO,yyline,yycolumn,yytext());
 
 }
 

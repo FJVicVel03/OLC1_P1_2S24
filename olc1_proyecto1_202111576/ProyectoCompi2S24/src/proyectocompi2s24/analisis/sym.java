@@ -8,34 +8,35 @@ package proyectocompi2s24.analisis;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int MENOS = 25;
-  public static final int PUNTO = 13;
-  public static final int DOSPUNTOS = 27;
+  public static final int MENOS = 26;
+  public static final int PUNTO = 14;
+  public static final int DOSPUNTOS = 28;
   public static final int CADENA = 2;
   public static final int RBRACE = 7;
-  public static final int FINCADENA = 14;
+  public static final int FINCADENA = 15;
   public static final int INTERSECCION = 10;
-  public static final int UMENOS = 26;
-  public static final int OPERA = 18;
+  public static final int UMENOS = 27;
+  public static final int OPERA = 19;
   public static final int LBRACE = 6;
-  public static final int TKLOG = 16;
+  public static final int TKLOG = 17;
   public static final int COMA = 8;
   public static final int NUMEROS = 3;
-  public static final int MULT = 20;
+  public static final int MULT = 21;
   public static final int EOF = 0;
-  public static final int DIV = 21;
-  public static final int SCOPE = 19;
-  public static final int CONJ = 17;
+  public static final int DIV = 22;
+  public static final int SCOPE = 20;
+  public static final int CONJ = 18;
   public static final int UNION = 9;
-  public static final int TKCONSOLE = 15;
-  public static final int PAR2 = 23;
+  public static final int TKCONSOLE = 16;
+  public static final int PAR2 = 24;
   public static final int error = 1;
-  public static final int PAR1 = 22;
+  public static final int PAR1 = 23;
   public static final int IDENTIFICADOR = 4;
-  public static final int FDER = 28;
-  public static final int VIRGULILLA = 12;
-  public static final int EVALUAR = 11;
-  public static final int MAS = 24;
+  public static final int COMPLEMENTO = 11;
+  public static final int FDER = 29;
+  public static final int VIRGULILLA = 13;
+  public static final int EVALUAR = 12;
+  public static final int MAS = 25;
   public static final int VAR = 5;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -49,6 +50,7 @@ public class sym {
   "COMA",
   "UNION",
   "INTERSECCION",
+  "COMPLEMENTO",
   "EVALUAR",
   "VIRGULILLA",
   "PUNTO",
